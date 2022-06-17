@@ -1,0 +1,11 @@
+* {
+    list-style: none
+}
+
+.country-container {
+    display:flex;
+}
+
+.country-title{
+    font-size: 20px
+}
