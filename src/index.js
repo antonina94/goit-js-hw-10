@@ -14,6 +14,11 @@ input.addEventListener('input', debounce(handleInput, DEBOUNCE_DELAY));
 function handleInput(event) {
   event.preventDefault();
   const inputCountry = event.target.value.trim();
+  if(inputCountry.trim() === ''){
+    countryList.innerHTML = ''
+    containerCountry.innerHTML = ''
+    return
+  }
   fetchCountries(inputCountry).then(response => {
     renderCountries(response);
     if (response.length > 1 && response.length <= 10) {
@@ -31,10 +36,6 @@ function handleInput(event) {
     .catch(error =>{
         console.log(error)
     });
-  if(inputCountry === ""){
-    countryList.innerHTML = ''
-    containerCountry.innerHTML = ''
-  }
 }
 
 
@@ -67,11 +68,11 @@ function renderCountryInfo(response) {
                         }</h1>
                     </div>
                 </li>
-        <p class = 'country-capital'> Capital:${country.capital}
+        <p class = 'country-capital'><span class = 'span-capital'>Capital: </span>${country.capital}
         </p>
-        <p class = 'country-population'> Population:${country.population}
+        <p class = 'country-population'><span class = 'span-population'>Population: </span>${country.population}
         </p>
-        <p class = 'country-languages'> Languages:${Object.values(
+        <p class = 'country-languages'><span class = 'span-languages'>Languages: </span>${Object.values(
           country.languages
         )}
         </p>
@@ -86,3 +87,6 @@ function clearInput() {
     countryList.innerHTML = '';
   }
 }
+
+
+

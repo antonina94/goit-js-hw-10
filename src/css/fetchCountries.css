@@ -7,5 +7,11 @@
 }
 
 .country-title{
-    font-size: 20px
+    font-size: 20px;
+}
+
+.span-capital,
+.span-population,
+.span-languages{
+    font-weight: bold;
 }
