@@ -1,22 +1,22 @@
 import './css/styles.css';
 import './//css//fetchCountries.css';
+import { getRefs } from './/refs';
 import  {fetchCountries} from './/fetchCountries';
 import debounce from 'lodash.debounce';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const DEBOUNCE_DELAY = 300;
-const input = document.querySelector('#search-box');
-const countryList = document.querySelector('.country-list');
-const containerCountry = document.querySelector('.country-info');
 
-input.addEventListener('input', debounce(handleInput, DEBOUNCE_DELAY));
+const refs = getRefs()
+
+refs.input.addEventListener('input', debounce(handleInput, DEBOUNCE_DELAY));
 
 function handleInput(event) {
   event.preventDefault();
   const inputCountry = event.target.value.trim();
-  if(inputCountry.trim() === ''){
-    countryList.innerHTML = ''
-    containerCountry.innerHTML = ''
+  if(inputCountry === ''){
+    refs.countryList.innerHTML = ''
+    refs.containerCountry.innerHTML = ''
     return
   }
   fetchCountries(inputCountry).then(response => {
@@ -51,7 +51,7 @@ function renderCountries(response){
                 </li>`;
     })
     .join('');
-  countryList.innerHTML = murkup;
+  refs.countryList.innerHTML = murkup;
 }
 
 function renderCountryInfo(response) {
@@ -79,14 +79,13 @@ function renderCountryInfo(response) {
             `;
     })
     .join('');
-  containerCountry.innerHTML = murkup;
+  refs.containerCountry.innerHTML = murkup;
 }
 
 function clearInput() {
   if (renderCountryInfo) {
-    countryList.innerHTML = '';
+    refs.countryList.innerHTML = '';
   }
 }
-
 
 
