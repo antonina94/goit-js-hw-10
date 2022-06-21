@@ -15,8 +15,6 @@ function handleInput(event) {
   event.preventDefault();
   const inputCountry = event.target.value.trim();
   if (inputCountry === '') {
-    refs.countryList.innerHTML = '';
-    refs.containerCountry.innerHTML = '';
     return;
   }
   fetchCountries(inputCountry)
@@ -36,7 +34,7 @@ function handleInput(event) {
     .catch(error => {
       console.log(error);
     });
-  clearInput();
+    clearInput()
 }
 
 function renderCountries(response) {
@@ -87,7 +85,6 @@ function renderCountryInfo(response) {
 }
 
 function clearInput() {
-  if (refs.input.value != '') {
-    refs.countryList.innerHTML = '';
-  }
+      refs.countryList.innerHTML = '';
+    refs.containerCountry.innerHTML = ''
 }
